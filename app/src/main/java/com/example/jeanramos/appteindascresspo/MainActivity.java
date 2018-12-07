@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.jeanramos.appteindascresspo.activities.Menu;
+import com.example.jeanramos.appteindascresspo.activities.RegisterActivity;
 import com.example.jeanramos.appteindascresspo.generals.Settings;
 
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnIngresar;
     private EditText Usuario;
     private EditText Contrasenia;
+    private Button  btnRegistrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,17 @@ public class MainActivity extends AppCompatActivity {
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
         Usuario = (EditText) findViewById(R.id.txtUsuario);
         Contrasenia = (EditText) findViewById(R.id.txtContraseña);
+        btnRegistrar=(Button)findViewById(R.id.btnRegistrar);
 
+
+        btnRegistrar.setOnClickListener (new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i(Settings.INFO, "Registrar");
+                Intent i = new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(i);
+
+            }
+        });
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.i(Settings.INFO, "Products");
@@ -43,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
+
 
     @Override
     protected void onStart() {
