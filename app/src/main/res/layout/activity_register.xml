@@ -12,7 +12,75 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ingrese correo" />
+        android:text="Formulario de Registro"
+        android:gravity="center"
+        android:textSize="35dp"
+        android:layout_margin="10dp"/>
 
-    
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nombres"
+        android:layout_gravity="center"
+        android:inputType="textPersonName"
+        android:layout_margin="15dp" />
+
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Apellidos"
+        android:layout_gravity="center"
+        android:inputType="textPersonName"
+        android:layout_margin="15dp"/>
+
+
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:layout_gravity="center"
+        android:inputType="textPassword"
+        android:layout_margin="15dp"/>
+
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Repita contraseña"
+        android:layout_gravity="center"
+        android:inputType="textPassword"
+        android:layout_margin="15dp"/>
+
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Ingrese su correo"
+        android:inputType="textEmailAddress"
+        android:layout_margin="15dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:text="Registrarme"
+        android:backgroundTint="@color/miBtn"
+        android:layout_margin="15dp"/>
+
+
 </LinearLayout>
