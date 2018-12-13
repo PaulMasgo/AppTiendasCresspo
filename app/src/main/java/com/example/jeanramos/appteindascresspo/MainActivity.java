@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.jeanramos.appteindascresspo.activities.Menu;
+import com.example.jeanramos.appteindascresspo.activities.RegisterActivity;
 import com.example.jeanramos.appteindascresspo.generals.Settings;
 
 
@@ -17,6 +19,7 @@ import com.example.jeanramos.appteindascresspo.generals.Settings;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnIngresar;
+    private Button btnRegistrar;
     private EditText Usuario;
     private EditText Contrasenia;
 
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
+        btnRegistrar= (Button) findViewById(R.id.btnRegistro);
+
         Usuario = (EditText) findViewById(R.id.txtUsuario);
         Contrasenia = (EditText) findViewById(R.id.txtContraseña);
 
@@ -36,8 +41,18 @@ public class MainActivity extends AppCompatActivity {
                 if (Usuario.getText().toString().equals("grupocresspo") && Contrasenia.getText().toString().equals("cresspo") )
                 {
                     startActivity(i);
+                }else {
+                    Toast.makeText(getApplicationContext(), "Mi primer Toast", Toast.LENGTH_LONG).show();
                 }
 
+            }
+        });
+
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i(Settings.INFO, "Products");
+                Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(i);
             }
         });
 
