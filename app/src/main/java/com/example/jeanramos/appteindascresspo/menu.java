@@ -12,6 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.example.jeanramos.appteindascresspo.Fragments.AboutsFragment;
+import com.example.jeanramos.appteindascresspo.Fragments.ProductskFragment;
 
 public class menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -83,11 +87,12 @@ public class menu extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            Toast
+                    .makeText(this,"ey hecho click",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_slideshow) {
-
+                fragmentChange( "Product_list");
         } else if (id == R.id.nav_manage) {
-
+                fragmentChange("about");
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -98,4 +103,18 @@ public class menu extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void fragmentChange (String _fragment){
+        if (_fragment.equals("product_list")){
+            getFragmentManager().beginTransaction().
+                    replace(R.id.mainFragment, new ProductskFragment())
+                    .addToBackStack(null).commit();
+        } else if ( _fragment.equals("about-us")){
+            getFragmentManager().beginTransaction().
+                    replace(R.id.mainFragment, new AboutsFragment())
+                    .addToBackStack(null).commit();
+        }
+
+
+    }
+
 }
