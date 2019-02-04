@@ -7,8 +7,20 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.jeanramos.appteindascresspo.R;
+import com.example.jeanramos.appteindascresspo.Services.ProductoService;
+import com.example.jeanramos.appteindascresspo.models.Product;
+import com.google.gson.Gson;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,11 +73,48 @@ public class productsFragment extends Fragment {
         }
     }
 
+    private Retrofit retrofit;
+    private TextView textViewResultado;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_products, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_products, container, false);
+        textViewResultado = (TextView) rootView.findViewById(R.id.textoresultado);
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.36:3000/").addConverterFactory(GsonConverterFactory.create()).build();
+
+        ProductoService productoservice = retrofit.create(ProductoService.class);
+
+        Call<List<Product>> call = productoservice.getProducto();
+
+        call.enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                if(!response.isSuccessful()){
+                    textViewResultado.setText("Code: " + response.code());
+                    return;
+                }
+                List<Product> productos = response.body();
+
+                for (Product product:productos){
+                    String contenido = "";
+                    contenido += "nombre : " + product.getNombre() + "\n";
+                    contenido += "descripcion : " + product.getDescripcion()+ "\n"+ "\n";
+
+                    textViewResultado.append(contenido);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                textViewResultado.setText(t.getMessage());
+            }
+        });
+
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -92,16 +141,7 @@ public class productsFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

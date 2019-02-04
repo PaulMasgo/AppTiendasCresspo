@@ -3,14 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context=".Fragments.productsFragment">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textoresultado"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hola yo soy el producto"
-        android:textSize="50px"/>
+        android:layout_height="match_parent" />
 
 
 </FrameLayout>

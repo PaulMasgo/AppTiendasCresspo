@@ -20,12 +20,12 @@ public class ListaProductos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_productos);
 
-     ListaProductos = (ListView) findViewById(R.id.lstvProductos);
-        ArrayList<String> items =   Product.getProductsAsString();
-
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, simple_list_item_1, items);
-
-        ListaProductos.setAdapter(itemsAdapter);
+//     ListaProductos = (ListView) findViewById(R.id.lstvProductos);
+//        ArrayList<String> items =   Product.getProductsAsString();
+//
+//        ArrayAdapter<String> itemsAdapter =
+//                new ArrayAdapter<String>(this, simple_list_item_1, items);
+//
+//        ListaProductos.setAdapter(itemsAdapter);
     }
 }
