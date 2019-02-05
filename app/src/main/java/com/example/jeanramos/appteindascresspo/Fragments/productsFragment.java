@@ -7,10 +7,12 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.jeanramos.appteindascresspo.R;
 import com.example.jeanramos.appteindascresspo.Services.ProductoService;
+import com.example.jeanramos.appteindascresspo.activities.Adaptador;
 import com.example.jeanramos.appteindascresspo.models.Product;
 import com.google.gson.Gson;
 
@@ -74,7 +76,8 @@ public class productsFragment extends Fragment {
     }
 
     private Retrofit retrofit;
-    private TextView textViewResultado;
+    private ListView lista;
+    List<Product> Lista;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,7 +85,7 @@ public class productsFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View rootView = inflater.inflate(R.layout.fragment_products, container, false);
-        textViewResultado = (TextView) rootView.findViewById(R.id.textoresultado);
+        lista = (ListView) rootView.findViewById(R.id.ListaItems);
         retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.36:3000/").addConverterFactory(GsonConverterFactory.create()).build();
 
         ProductoService productoservice = retrofit.create(ProductoService.class);
@@ -93,28 +96,20 @@ public class productsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if(!response.isSuccessful()){
-                    textViewResultado.setText("Code: " + response.code());
+                    //textViewResultado.setText("Code: " + response.code());
                     return;
                 }
-                List<Product> productos = response.body();
+                 Lista = response.body();
 
-                for (Product product:productos){
-                    String contenido = "";
-                    contenido += "nombre : " + product.getNombre() + "\n";
-                    contenido += "descripcion : " + product.getDescripcion()+ "\n"+ "\n";
-
-                    textViewResultado.append(contenido);
-                }
             }
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                textViewResultado.setText(t.getMessage());
+                //textViewResultado.setText(t.getMessage());
             }
         });
-
-
         return rootView;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

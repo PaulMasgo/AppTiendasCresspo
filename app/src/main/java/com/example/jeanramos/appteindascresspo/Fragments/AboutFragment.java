@@ -7,8 +7,10 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.jeanramos.appteindascresspo.R;
+import com.example.jeanramos.appteindascresspo.activities.Adaptador;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,11 +63,34 @@ public class AboutFragment extends Fragment {
         }
     }
 
+
+    ListView lista;
+    String[][] datos = {
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
+            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"}
+    };
+
+    int[] datosImg = {R.drawable.casacamurray,R.drawable.pantalon,R.drawable.pantalomabesor,R.drawable.pantalaonrasagado};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_about, container, false);
+
+        lista = (ListView) view.findViewById(R.id.lstvProduct);
+        lista.setAdapter(new Adaptador(this.getActivity(),datos,datosImg));
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
