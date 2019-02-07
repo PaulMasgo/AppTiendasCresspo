@@ -11,13 +11,20 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Formulario de Registro"
+        android:layout_height="65dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
         android:gravity="center"
-        android:textSize="35dp"
-        android:layout_margin="10dp"/>
+        android:text=" Registro Cresspo"
+        android:textColor="@color/colorBlanco"
+        android:textSize="20dp"
+         />
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <EditText
         android:id="@+id/editText2"
         android:layout_width="350dp"
@@ -79,8 +86,9 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:text="Registrarme"
-        android:backgroundTint="@color/miBtn"
+        android:textColor="@color/colorBlanco"
+        android:backgroundTint="@color/colorPrimary"
         android:layout_margin="15dp"/>
 
-
+    </LinearLayout>
 </LinearLayout>
