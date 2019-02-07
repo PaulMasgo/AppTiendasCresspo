@@ -8,9 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.jeanramos.appteindascresspo.R;
+import com.example.jeanramos.appteindascresspo.Services.ProductoService;
 import com.example.jeanramos.appteindascresspo.activities.Adaptador;
+import com.example.jeanramos.appteindascresspo.models.Product;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,21 +74,10 @@ public class AboutFragment extends Fragment {
         }
     }
 
+    private Retrofit retrofit;
+    private TextView texto;
+    List<Product> Lista;
 
-    ListView lista;
-    String[][] datos = {
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"},
-            {"Pantalon Loke","20.5","Rojo"},{"Camisa","54.52","Azul"}
-    };
-
-    int[] datosImg = {R.drawable.casacamurray,R.drawable.pantalon,R.drawable.pantalomabesor,R.drawable.pantalaonrasagado};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,8 +87,40 @@ public class AboutFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
-        lista = (ListView) view.findViewById(R.id.lstvProduct);
-        lista.setAdapter(new Adaptador(this.getActivity(),datos,datosImg));
+        texto = (TextView) view.findViewById(R.id.textView4);
+        retrofit = new Retrofit.Builder().baseUrl("https://movilapicresspo.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+
+        ProductoService productoservice = retrofit.create(ProductoService.class);
+
+        Call<List<Product>> call = productoservice.getProducto();
+
+        call.enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                if(!response.isSuccessful()){
+                    texto.setText("Code: " + response.code());
+                    return;
+                }
+                Lista = response.body();
+
+                for(Product product :Lista){
+                    String content = "";
+                    content += "Nombre Producto = " + product.getNombre() +"\n";
+                    content += "Descripcion = " + product.getDescripcion() + "\n";
+                    content += "Color = " + product.getColor() + "\n";
+                    content += "Precio = S/." + product.getPrecio() + "\n\n";
+
+                    texto.append(content);
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                texto.setText(t.getMessage());
+            }
+        });
 
         return view;
     }

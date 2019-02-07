@@ -14,9 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.jeanramos.appteindascresspo.Fragments.APIrest;
 import com.example.jeanramos.appteindascresspo.Fragments.AboutFragment;
 import com.example.jeanramos.appteindascresspo.Fragments.productsFragment;
-import com.example.jeanramos.appteindascresspo.activities.ListaProductos;
 
 public class menuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,7 +85,7 @@ public class menuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_gallery) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
             Toast.makeText(this,"Haz hecho clik",Toast.LENGTH_LONG).show();
@@ -93,8 +93,8 @@ public class menuActivity extends AppCompatActivity
             fragmentChange("product_list");
         } else if (id == R.id.nav_manage) {
             fragmentChange("about");
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_api) {
+            fragmentChange("apirest");
         } else if (id == R.id.nav_send) {
 
         }
@@ -112,6 +112,11 @@ public class menuActivity extends AppCompatActivity
             getFragmentManager().beginTransaction()
                     .replace(R.id.mainFragment, new AboutFragment())
                     .addToBackStack(null).commit();
+        }else if (_Fragment.equals("apirest")) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.mainFragment, new APIrest())
+                    .addToBackStack(null).commit();
         }
+
     }
 }

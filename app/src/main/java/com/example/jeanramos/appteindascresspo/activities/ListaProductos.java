@@ -45,7 +45,7 @@ public class ListaProductos extends AppCompatActivity {
         setContentView(R.layout.activity_lista_productos);
 
         lista = (ListView) findViewById(R.id.lstvProductos);
-        lista.setAdapter(new Adaptador(this,datos,datosImg));
+       lista.setAdapter(new Adaptador(this,datos,datosImg));
 
     }
 }
