@@ -14,12 +14,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.jeanramos.appteindascresspo.models.Product;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
+
+
 import com.example.jeanramos.appteindascresspo.Fragments.APIrest;
 import com.example.jeanramos.appteindascresspo.Fragments.AboutFragment;
 import com.example.jeanramos.appteindascresspo.Fragments.productsFragment;
 
+import java.util.ArrayList;
+
 public class menuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    FirebaseDatabase databaseFirebase;
+    DatabaseReference mireferencia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +105,13 @@ public class menuActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
             fragmentChange("product_list");
         } else if (id == R.id.nav_manage) {
-            fragmentChange("about");
+           // fragmentChange("about");
+            ArrayList<Product> products = new ArrayList<>();
+            Product newProduct = new Product("Pasteles");
+            products.add(newProduct);
+            mireferencia.setValue(products);
         } else if (id == R.id.nav_api) {
-            fragmentChange("apirest");
+
         } else if (id == R.id.nav_send) {
 
         }
