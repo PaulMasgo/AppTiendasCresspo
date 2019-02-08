@@ -3,32 +3,50 @@ package com.example.jeanramos.appteindascresspo.models;
 import java.util.ArrayList;
 
 public class Product {
-    private String name;
-    private String description;
 
-    public String getName() {
-        return name;
+
+    private String nombre;
+    private String descripcion;
+    private Float  precio;
+    private String color;
+
+
+    public Product( String nombre, String descripcion, Float
+            precio,  String color){
+
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Float getPrecio() {
+        return precio;
     }
 
-    public static ArrayList<String> getProductsAsString() {
-        ArrayList<String> o = new ArrayList<>();
-        o.add("Chompa Aerials");
-        o.add("Chompa");
-        o.add("Granolas con Miel");
-        o.add("Granolas de Trigo");
-        return o;
+
+
+    public String getColor() {
+        return color;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setPrecio(Float precio) {
+        this.precio = precio;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

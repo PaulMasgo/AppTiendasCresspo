@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.jeanramos.appteindascresspo.activities.ListaProductos;
 import com.example.jeanramos.appteindascresspo.activities.Menu;
 import com.example.jeanramos.appteindascresspo.activities.RegisterActivity;
 import com.example.jeanramos.appteindascresspo.generals.Settings;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnIngresar = (Button) findViewById(R.id.btnIngresar);
+        btnIngresar = (Button) findViewById(R.id.btnIngresar2);
         btnRegistrar= (Button) findViewById(R.id.btnRegistro);
 
         Usuario = (EditText) findViewById(R.id.txtUsuario);
@@ -37,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.i(Settings.INFO, "Products");
-                Intent i = new Intent(MainActivity.this, Menu.class);
+                Intent i = new Intent(MainActivity.this, menuActivity.class);
+
                 if (Usuario.getText().toString().equals("grupocresspo") && Contrasenia.getText().toString().equals("cresspo") )
                 {
                     startActivity(i);
                 }else {
-                    Toast.makeText(getApplicationContext(), "Mi primer Toast", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Usuario o contraseña Incorrectos", Toast.LENGTH_LONG).show();
                 }
 
             }
