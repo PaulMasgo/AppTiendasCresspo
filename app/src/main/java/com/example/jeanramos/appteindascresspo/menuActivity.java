@@ -14,12 +14,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.jeanramos.appteindascresspo.models.Product;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import com.example.jeanramos.appteindascresspo.Fragments.APIrest;
 import com.example.jeanramos.appteindascresspo.Fragments.AboutFragment;
 import com.example.jeanramos.appteindascresspo.Fragments.productsFragment;
 
+import java.util.ArrayList;
+
 public class menuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    FirebaseDatabase databaseFireBase;
+    DatabaseReference productsReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +56,9 @@ public class menuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        databaseFireBase = FirebaseDatabase.getInstance();
+        productsReference = databaseFireBase.getReference("products");
     }
 
     @Override
@@ -88,35 +102,52 @@ public class menuActivity extends AppCompatActivity
         if (id == R.id.nav_gallery) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            Toast.makeText(this,"Haz hecho clik",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Haz hecho clik", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_slideshow) {
             fragmentChange("product_list");
         } else if (id == R.id.nav_manage) {
             fragmentChange("about");
-        } else if (id == R.id.nav_api) {
+        } else if (id == R.id.nav_manage) {
+
+            /* Enviamos datos a firebase */
+            ArrayList<Product> products = new ArrayList<>();
+
+            Product myNewProduct = new Product( "Cuero", "rojo");
+            products.add(myNewProduct);
+
+            productsReference.setValue(products);
+            /* Enviamos datos a firebase */
+
+
             fragmentChange("apirest");
+
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_send) {
+            fragmentChange("maps");
+        } else if (id == R.id.nav_send) {
+            fragmentChange("my-account");
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void fragmentChange (String _Fragment){
-        if(_Fragment.equals("product_list")){
+
+    public void fragmentChange(String _Fragment) {
+
+        if (_Fragment.equals("product_list")) {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.mainFragment,new productsFragment())
+                    .replace(R.id.mainFragment, new productsFragment())
                     .addToBackStack(null).commit();
-        }else if (_Fragment.equals("about")) {
+        } else if (_Fragment.equals("about")) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.mainFragment, new AboutFragment())
                     .addToBackStack(null).commit();
-        }else if (_Fragment.equals("apirest")) {
+        } else if (_Fragment.equals("apirest")) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.mainFragment, new APIrest())
                     .addToBackStack(null).commit();
-        }
 
+        }
     }
 }

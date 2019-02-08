@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "236216401141",
+    "firebase_url": "https://cresspo-2f3b9.firebaseio.com",
+    "project_id": "cresspo-2f3b9",
+    "storage_bucket": "cresspo-2f3b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236216401141:android:d0e3c8c8ddbce5b5",
+        "android_client_info": {
+          "package_name": "com.example.jeanramos.appteindascresspo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236216401141-42b9lrr6e5r1h8es3of5l3pclgd1lono.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHuYxisHcDjtZtUFD2H7yW5Lghx2EzS08"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
