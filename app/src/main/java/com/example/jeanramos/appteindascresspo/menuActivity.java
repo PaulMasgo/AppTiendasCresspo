@@ -14,13 +14,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.jeanramos.appteindascresspo.models.Product;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import com.example.jeanramos.appteindascresspo.Fragments.APIrest;
 import com.example.jeanramos.appteindascresspo.Fragments.AboutFragment;
 import com.example.jeanramos.appteindascresspo.Fragments.productsFragment;
 
+import java.util.ArrayList;
+
 public class menuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    FirebaseDatabase databaseFireBase;
+    DatabaseReference productsReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,8 +106,12 @@ public class menuActivity extends AppCompatActivity
             fragmentChange("about");
         } else if (id == R.id.nav_api) {
             fragmentChange("apirest");
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.send_mesasage) {
+            ArrayList<Product> products=new ArrayList<>();
+            Float x= new Float(20);
+            Product myNewProducto = new Product("camisa" ,"dsdad",x,"red");
+            products.add(myNewProducto);
+            productsReference.setValue(products);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

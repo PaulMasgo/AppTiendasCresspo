@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "253553671812",
+    "firebase_url": "https://cresspotiendas1.firebaseio.com",
+    "project_id": "cresspotiendas1",
+    "storage_bucket": "cresspotiendas1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253553671812:android:d0e3c8c8ddbce5b5",
+        "android_client_info": {
+          "package_name": "com.example.jeanramos.appteindascresspo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253553671812-1pot5df1p842bttptvecnt0ocbmv4a8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4u8LijQkzu_wboHMOsOFwn4F3b0NDLIg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
